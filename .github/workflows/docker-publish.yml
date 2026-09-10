@@ -27,4 +27,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/TANG-YIN/myweb-demo:v1
+          tags: ghcr.io/tang-yin/myweb-demo:v1
