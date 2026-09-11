@@ -17,7 +17,7 @@ HTML_TEMPLATE = """
 <body align="center">
     <br><br><br><br><br><br>
     <h3>Please input your info</h3>
-    <form action="/submit" method="post">
+    <form action="/insert" method="post">
         Your Name: <input type="text" name="user_name"><br><br>
         Your Level: <input type="text" name="level" value="100"><br><br>
         <input type="submit" value="Submit">
