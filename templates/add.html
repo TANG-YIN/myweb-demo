@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Input Info</title>
+    <style>
+        body { text-align: center; font-family: serif; margin-top: 100px; }
+        .form-group { margin: 15px 0; font-size: 1.2em; }
+        input[type="text"] { padding: 5px; width: 150px; }
+        .btn-group { margin-top: 30px; }
+        button { padding: 5px 20px; margin: 0 10px; cursor: pointer; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <h2>Please input your info</h2>
+    <form action="/insert" method="POST">
+        <div class="form-group">
+            Your name: <input type="text" name="user_name" value="Me" autofocus>
+        </div>
+        <div class="form-group">
+            Your Level: <input type="text" name="level" value="100">
+        </div>
+        <div class="btn-group">
+            <button type="button" onclick="location.href='/'">Cancel</button>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

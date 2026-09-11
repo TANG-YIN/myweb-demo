@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Congratulations</title>
+    <style>
+        body { text-align: center; font-family: serif; margin-top: 50px; }
+        table { margin: 20px auto; border-collapse: collapse; width: 50%; }
+        th, td { border: 2px solid black; padding: 10px; text-align: center; }
+        .btn { margin-bottom: 20px; padding: 5px 15px; cursor: pointer; }
+        h1 { font-size: 2em; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Congratulations!!</h1>
+    <button class="btn" onclick="location.href='/add'">Add...</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Level(Score)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 这里使用 Jinja2 循环遍历后端传过来的 users 列表 -->
+            {% for user in users %}
+            <tr>
+                <td>{{ user[1] }}</td>  <!-- 假设数据库第一列是ID，第二列是USER_NAME -->
+                <td>{{ user[2] }}</td>  <!-- 第三列是LEVEL -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
