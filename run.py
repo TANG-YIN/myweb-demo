@@ -28,11 +28,11 @@ def index():
         conn.close()
     except pymysql.Error as e:
         return f"<h3>Error: {e}</h3><br><a href='/'>Return</a>"
-    return render_template("index.html", users=rows)
+    return render_template("templates/users/index.html", users=rows)
 
 @app.route("/add")
 def add():
-    return render_template("add.html")
+    return render_template("templates/users/add.html")
 
 @app.route("/insert", methods=["POST"])
 def insert():
