@@ -6,7 +6,7 @@ class UserRepository:
         self.conn = get_db()
 
     def list_all(self):
-        with self.conn.cursor(pymysql.cursors.DictCursor) as cursor:
+        with self.conn.cursor() as cursor:
             sql = "SELECT * FROM T_USERS"
             cursor.execute(sql)
             rows = cursor.fetchall()
