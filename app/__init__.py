@@ -9,6 +9,6 @@ def create_app():
 
     app.teardown_appcontext(close_db)
 
-    app.register_blueprint(users_bp)
+    app.register_blueprint(users_bp, url_prefix="/users")
 
     return app
