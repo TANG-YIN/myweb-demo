@@ -1,6 +1,7 @@
 from flask import Flask
 from .config import Config
-from .db import get_db
+from .db import close_db
+from .users.routes import bp as users_bp
 
 def create_app():
     app = Flask(__name__)
@@ -8,7 +9,6 @@ def create_app():
 
     app.teardown_appcontext(close_db)
 
-    from .users.routes import bp as users_bp
     app.register_blueprint(users_bp)
 
     return app
