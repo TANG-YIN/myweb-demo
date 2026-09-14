@@ -1,12 +1,11 @@
 from flask import Blueprint, request, render_template, redirect, url_for, current_app
-from app.db import get_db
 from .services import UserService
 from .repository import UserRepository
 
 bp = Blueprint("users", __name__)
 
 def get_service():
-    return UserService(UserRepository(get_db()))
+    return UserService(UserRepository)
 
 @bp.route("/")
 def index():
