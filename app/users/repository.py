@@ -1,4 +1,5 @@
 import pymysql
+from app.db import get_db
 
 class UserRepository:
     def __init__(self):

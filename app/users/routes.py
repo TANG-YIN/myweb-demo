@@ -1,6 +1,5 @@
 from flask import Blueprint, request, render_template, redirect, url_for, current_app
 from .services import UserService
-from .repository import UserRepository
 
 bp = Blueprint("users", __name__)
 
