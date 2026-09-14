@@ -5,7 +5,7 @@ from .repository import UserRepository
 bp = Blueprint("users", __name__)
 
 def get_service():
-    return UserService(UserRepository)
+    return UserService()
 
 @bp.route("/")
 def index():
