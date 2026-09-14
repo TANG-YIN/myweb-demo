@@ -15,5 +15,4 @@ COPY . .
 EXPOSE 8080
 
 # 启动应用
-WORKDIR /app/app
 CMD ["python", "run.py"]
