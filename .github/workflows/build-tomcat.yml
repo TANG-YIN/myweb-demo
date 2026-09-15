@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'tomcat/**'
+      - 'tomcat/**'  # 只有tomcat变动才会触发
+  workflow_dispatch: # 允许手动点击按钮触发
 
 jobs:
   build-and-push:
@@ -30,7 +31,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./tomcat
-          file: ./tomcat/Dockerfile
+          context: ./tomcat   # 指向tomcat
+          file: ./tomcat/Dockerfile   # 指向tomcat的Docker文件路径
           push: true
           tags: ghcr.io/tang-yin/tomcat-custom:v1

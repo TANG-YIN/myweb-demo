@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'myweb/**' # 只有myweb目录发生变动才触发
+  workflow_dispatch: # 允许手动点击按钮触发
 
 jobs:
   build-and-push:
