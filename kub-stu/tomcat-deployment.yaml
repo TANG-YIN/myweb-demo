@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
+    matchExpressions:
+      - {key: tier, operator: In, values: [frontend]}
+  template:
+    metadata:
+      labels:
+        app: app-demo
+        tier: frontend
+    spec:
+      volumes:
+        - name: datavol
+          emptyDir: {}
+      containers:
+      - name: tomcat-demo
+        image: ghcr.io/tang-yin/tomcat-custom:v1
+        volumeMounts:
+          - mountPath: /mydata-data
+            name: datavol
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

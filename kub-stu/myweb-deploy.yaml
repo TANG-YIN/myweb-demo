@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+        - name: myweb
+          image: ghcr.io/tang-yin/myweb-demo:v1
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 8080
