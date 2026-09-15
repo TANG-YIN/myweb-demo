@@ -1,0 +1,10 @@
+# myweb/.dockerignore
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+.venv
+venv
+env
+*.md

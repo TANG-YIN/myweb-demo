@@ -4,6 +4,9 @@ FROM python:3.11-slim
 # 设置工作目录
 WORKDIR /app
 
+# 让Python日志直接输出，方便k8s收集
+ENV PYTHONUBUFFERED=1
+
 # 复制依赖文件并安装
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
