@@ -1,8 +1,10 @@
-name: Publish Docker image
+name: Build and Push myweb
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'myweb/**' # 只有myweb目录发生变动才触发
 
 jobs:
   build-and-push:
@@ -12,19 +14,24 @@ jobs:
       packages: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Log in to the Container registry
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login in to the Container registy
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./myweb   # 指向myweb目录
+          file: ./myweb/Dockerfile  # 指向Dockerfile路径
           push: true
           tags: ghcr.io/tang-yin/myweb-demo:v1
+
