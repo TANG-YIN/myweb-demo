@@ -1,5 +1,5 @@
 <?php
-require 'vender/autoload.php'; // 引入composer的自动加载文件
+require 'vendor/autoload.php'; // 引入composer的自动加载文件
 
 use Predis\Client;
 
