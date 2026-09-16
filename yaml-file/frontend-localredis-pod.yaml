@@ -1,16 +1,25 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: redis-php
   labels:
     name: redis-php
 spec:
-  containers:
-  - name: frontend
-    image: ghcr.io/tang-yin/frontend-redis-custom:v1
-    ports:
-    - containerPort: 80
-  - name: redis
-    image: redis:7-alpine
-    ports:
-    - containerPort: 6379
+  replicas: 1
+  selector:
+    matchLabels:
+      name: redis-php
+  template:
+    metadata:
+      labels:
+        name: redis-php
+    spec:
+      containers:
+    - name: frontend
+      image: ghcr.io/tang-yin/frontend-redis-custom:v1
+      ports:
+      - containerPort: 80
+    - name: redis
+      image: redis:7-alpine
+      ports:
+      - containerPort: 6379
