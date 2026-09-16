@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  labels:
+    app: my-app
+spec:
+  replicas: 3                  # 副本数
+  selector:
+    matchLabels:
+      app: my-app              # 必须匹配 template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      # 这里放上面 Pod 的 spec 内容（去掉 apiVersion/kind/metadata）
+      containers:
+      - name: my-container
+        image: nginx:1.25
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          capabilities:
+            drop: ["ALL"]
+      restartPolicy: Always    # Deployment 中必须是 Always，通常可省略
