@@ -1,4 +1,4 @@
-name: Build and Push tomcat
+name: Build and Push frontend-redis
 
 on:
   push:
