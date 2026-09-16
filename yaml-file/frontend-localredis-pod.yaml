@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: frontend
-    image: kubeguide/guestbook-php-frontend:localredis
+    image: ghcr.io/tang-yin/frontend-redis-custom:v1
     ports:
     - containerPort: 80
   - name: redis
