@@ -15,11 +15,12 @@ spec:
         name: redis-php
     spec:
       containers:
-    - name: frontend
-      image: ghcr.io/tang-yin/frontend-redis-custom:v1
-      ports:
-      - containerPort: 80
-    - name: redis
-      image: redis:7-alpine
-      ports:
-      - containerPort: 6379
+      - name: frontend
+        image: ghcr.io/tang-yin/frontend-redis-custom:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
