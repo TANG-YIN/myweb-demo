@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume-pod
+  labels:
+    name: volume-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: volume-pod
+  template:
+    metadata:
+      labels:
+        name: volume-pod
+    spec:
+      containers:
+      - name: tomcat
+        image: tomcat:9-alpine
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: app-logs
+          mountPath: /usr/local/tomcat/logs
+      - name: busybox
+        image: busybox
+        imagePullPolicy: Always
+        command: ["sh", "-c", "tail -f /logs/catalina*.log"]
+        volumeMounts:
+        - name: app-logs
+          mountPath: /logs
+      volumes:
+      - name: app-logs
+        emptyDir: {}
