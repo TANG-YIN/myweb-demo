@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  namespace: default
+  labels:
+    app: my-app
+    tier: backend
+  annotations:
+    description: "example service"
+    owner: "team-a"
+spec:
+  selector:
+    app: my-app
+    tier: backend
+  type: NodePort
+  # clusterIP: string               # 通常由系统自动分配，除非明确需要固定IP地址
+  sessionAffinity: None
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+    nodePort: 30000
+  # status:                         # status为只读字段，由Kubernetes自动填充，创建时不用写
+  #   loadBalancer:
+  #     ingress:
+  #       - ip: 192.0.2.1
+  #       hostname: lb.example.com
